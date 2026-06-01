@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Tailwind v4 Theme Tokens (replaces old :root + custom classes)
+   ========================================================= */
+@theme {
+  /* Brand */
+  --color-accent: #9C82E3;
+  --color-accent-hover: #7C5ED1;
+
+  /* Typography (editorial fashion look) */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  /* Extend some defaults if needed for future phases */
+}
+
+/* =========================================================
+   Legacy / Project-specific utilities (ported from old <style>)
+   These must stay so the visual output is 100% identical.
+   ========================================================= */
+
+/* Base container font (was .tail-container) */
+.tail-container {
+  font-family: var(--font-sans);
+}
+
+/* Editorial headings */
+.heading-serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.0;
+}
+
+/* Section scroll offset for fixed nav */
+.section {
+  scroll-margin-top: 80px;
+}
+
+/* Navbar scrolled state (glassmorphism) */
+.nav-scrolled {
+  background-color: rgba(5, 5, 5, 0.96);
+  backdrop-filter: blur(16px);
+}
+
+/* Backgrounds used throughout */
+.fashion-bg {
+  background: #050505;
+}
+.editorial-bg {
+  background: #0A0A0A;
+}
+
+/* Accent utilities (used for CTAs, labels, prices) */
+.accent {
+  color: #9C82E3;
+}
+.accent-bg {
+  background-color: #9C82E3;
+}
+.accent-bg:hover {
+  background-color: #7C5ED1;
+}
+
+/* Video containers */
+.cinematic-video {
+  position: relative;
+  overflow: hidden;
+}
+.cinematic-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Gradient overlay on videos */
+.video-overlay {
+  background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0.55) 45%,
+          rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* Before/After slider (critical — must be pixel-perfect) */
+.before-after-container {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  border-radius: 16px;
+}
+.before-after-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.after-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: inset(0 0 0 50%);
+  transition: clip-path 0.1s ease-out;
+}
+.slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: white;
+  z-index: 10;
+  cursor: ew-resize;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+.slider-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: white;
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.slider-handle::before {
+  content: '⟷';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+  z-index: 2;
+}
+
+/* Image hover effects */
+.fashion-img {
+  transition: transform 700ms cubic-bezier(0.23, 1, 0.32, 1),
+              filter 400ms ease;
+}
+.group:hover .fashion-img {
+  transform: scale(1.015);
+  filter: brightness(1.04);
+}
+
+/* Nav links */
+.nav-link {
+  transition: color 0.15s ease;
+}
+.nav-link:hover {
+  color: #9C82E3;
+}
+
+/* Pain points / cards */
+.pain-point {
+  transition: all 0.2s ease;
+}
+
+/* Modal animation */
+.modal {
+  animation: modalPop 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Video cards */
+.video-card {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.video-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Captions */
+.editorial-caption {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Pricing / luxury cards */
+.luxury-card {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.2s ease;
+}
+.luxury-card:hover {
+  border-color: rgba(190, 24, 93, 0.3);
+}
+
+/* Section titles (responsive) */
+.section-title {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 0.98;
+}
+
+/* Cinematic image frames */
+.cinematic-frame {
+  box-shadow: 0 25px 60px -15px rgb(0 0 0 / 0.5);
+}

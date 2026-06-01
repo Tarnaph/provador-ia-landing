@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provador IA — Pacotes mensais de conteúdo com IA para sua loja</title>
+    <meta name="description"
+        content="Pacotes mensais de fotos e vídeos profissionais com IA para sua loja. Conteúdo consistente todo mês sem precisar de modelo ou fotógrafo.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo.png">
+    <!-- Recomendado: gere favicons profissionais em https://realfavicongenerator.net usando o logo.png -->
+
+    <!-- Tailwind v4 via Vite (no more CDN) -->
+    <link rel="stylesheet" href="/src/main.css">
+
+</head>
+
+<body class="tail-container bg-[#050505] text-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050505]/95 backdrop-blur-xl transition-all">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-x-3">
+                    <img src="assets/images/logo.png" alt="Provador IA" class="h-9 w-auto">
+                    <span class="hidden md:inline font-light text-sm tracking-tight text-white/70"><small>socio.dev
+                            /</small> <b class="font-semibold text-white">PROVADOR
+                            IA</b></span>
+                </div>
+
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                    <a href="#transformacao" class="nav-link text-white/80">A Transformação</a>
+                    <a href="#videos" class="nav-link text-white/80">Em Movimento</a>
+                    <a href="#precos" class="nav-link text-white/80">Preços</a>
+                    <a href="#duvidas" class="nav-link text-white/80">Dúvidas</a>
+                </div>
+
+                <div class="flex items-center gap-x-3">
+                    <a href="https://wa.me/5515992707314?text=Ol%C3%A1!%20Quero%20fazer%20uma%20amostra%20gr%C3%A1tis%20do%20Provador%20IA."
+                        target="_blank"
+                        class="hidden sm:flex items-center justify-center px-6 py-2.5 text-sm font-medium border border-white/20 hover:bg-white/5 rounded-full transition-colors">
+                        Falar no WhatsApp
+                    </a>
+                    <button onclick="openSampleModal()"
+                        class="flex items-center justify-center px-7 py-2.5 text-sm font-semibold accent-bg hover:bg-[#7C5ED1] rounded-full transition-all active:scale-[0.985]">
+                        Quero amostra grátis
+                    </button>
+
+                    <button id="mobile-menu-btn"
+                        class="md:hidden w-10 h-10 flex items-center justify-center text-white/70 hover:text-white"
+                        onclick="toggleMobileMenu()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[#050505]">
+            <div class="px-6 py-8 flex flex-col gap-y-6 text-base font-medium">
+                <a href="#transformacao" class="py-1 text-white/80" onclick="toggleMobileMenu()">A Transformação</a>
+                <a href="#videos" class="py-1 text-white/80" onclick="toggleMobileMenu()">Em Movimento</a>
+                <a href="#precos" class="py-1 text-white/80" onclick="toggleMobileMenu()">Preços</a>
+                <a href="#duvidas" class="py-1 text-white/80" onclick="toggleMobileMenu()">Dúvidas</a>
+
+                <div class="pt-4 border-t border-white/10 flex flex-col gap-y-3">
+                    <a href="https://wa.me/5515992707314?text=Ol%C3%A1!%20Gostaria%20de%20conversar%20sobre%20o%20Provador%20IA."
+                        target="_blank"
+                        class="flex justify-center py-3 text-sm font-medium border border-white/20 rounded-full">
+                        Falar no WhatsApp
+                    </a>
+                    <button onclick="toggleMobileMenu(); openSampleModal()"
+                        class="w-full py-3 text-sm font-semibold accent-bg rounded-full">
+                        Quero amostra grátis
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-[70dvh] flex items-center bg-[#050505]">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                <!-- Lado Esquerdo: Vídeo -->
+                <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                    <video id="hero-video" autoplay muted loop playsinline
+                        class="w-full h-full object-cover aspect-[16/9]" poster="assets/images/14.jpg">
+                        <source src="assets/videos/sd/sd.mp4" type="video/mp4">
+                    </video>
+
+                    <!-- Sound Toggle Button -->
+                    <button id="sound-toggle"
+                        class="absolute bottom-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-black/60 hover:bg-[#9C82E3]/80 backdrop-blur-sm border border-white/20 text-white transition-all active:scale-95"
+                        aria-label="Ligar som do vídeo">
+                        <!-- Speaker icon (muted by default) -->
+                        <svg id="sound-icon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Lado Direito: Texto -->
+                <div class="flex flex-col justify-center">
+
+                    <div
+                        class="inline-flex items-center gap-x-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-sm mb-6 w-fit backdrop-blur">
+                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                        <span class="text-white/90 tracking-[0.5px]">Usado por lojas que vendem mais</span>
+                    </div>
+                    <h1 class="heading-serif text-[52px] sm:text-[62px] md:text-[72px] leading-[0.94] tracking-tighter">
+                        Conteúdo que vende.
+                        <span class="accent">Sem complicação.</span>
+                    </h1>
+
+                    <p class="mt-6 text-xl text-white/80 max-w-md font-light tracking-tight">
+                        Pacotes mensais de fotos e vídeos com modelos virtuais para sua loja.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                        <button onclick="document.getElementById('videos').scrollIntoView({ behavior: 'smooth' })"
+                            class="h-14 px-10 text-lg font-semibold border border-white/30 hover:bg-white/5 rounded-full transition-all flex items-center justify-center gap-x-2">
+                            Ver em movimento
+                        </button>
+                        <button onclick="openSampleModal()"
+                            class="h-14 px-10 text-lg font-semibold accent-bg hover:bg-[#7C5ED1] rounded-full transition-all flex items-center justify-center gap-x-2 shadow-lg shadow-[#9C82E3]/20 active:scale-[0.985]">
+                            Quero um pacote mensal
+                        </button>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- TRUST -->
+    <div class="border-b border-white/10 py-5">
+        <div
+            class="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-center gap-x-9 gap-y-3 text-white/40 text-sm tracking-[2px] font-medium">
+            <div>BOUTIQUES</div>
+            <div>BRECHÓS PREMIUM</div>
+            <div>LOJAS INSTAGRAM</div>
+            <div>MARCAS AUTORAIS</div>
+        </div>
+    </div>
+
+    <!-- TRANSFORMAÇÃO — CINEMATIC BEFORE/AFTER -->
+    <section id="transformacao" class="max-w-6xl mx-auto px-6 pt-20 pb-24 section">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+
+            <div class="lg:w-5/12">
+                <div class="text-[#9C82E3] text-sm tracking-[3px] font-semibold mb-3">O QUE MUDOU</div>
+                <h2 class="heading-serif section-title tracking-tighter leading-none">
+                    De foto no cabideiro<br>para ensaio de marca.
+                </h2>
+                <p class="mt-6 text-lg text-white/70 leading-relaxed">
+                    A mesma peça. O mesmo tecido. Agora com luz, corpo, movimento e desejo.
+                </p>
+                <div class="mt-8">
+                    <button onclick="openSampleModal()"
+                        class="inline-flex items-center gap-x-3 text-sm font-semibold accent-bg px-8 h-12 rounded-full">
+                        Quero isso na minha roupa →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Before/After Slider -->
+            <div class="lg:w-7/12">
+                <div class="before-after-container aspect-[16/10] bg-black rounded-2xl overflow-hidden border border-white/10 cinematic-frame"
+                    id="ba-container">
+                    <img src="assets/images/15.jpg" alt="Antes - foto simples da peça"
+                        class="w-full h-full object-cover" id="before-img">
+                    <img src="assets/images/14.jpg" alt="Depois - modelo profissional com a peça"
+                        class="after-image w-full h-full object-cover" id="after-img">
+
+                    <div class="slider-handle" id="slider-handle"></div>
+
+                    <!-- Labels -->
+                    <div class="absolute bottom-4 left-4 px-3 py-1 bg-black/70 text-xs tracking-widest rounded">ANTES
+                    </div>
+                    <div
+                        class="absolute bottom-4 right-4 px-3 py-1 accent-bg text-xs tracking-widest rounded font-medium">
+                        DEPOIS</div>
+                </div>
+                <p class="text-center text-white/50 text-xs tracking-widest mt-3">Arraste a linha para ver a
+                    transformação</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VÍDEOS — THE STAR OF THE SHOW -->
+
+
+    <!-- HOOKS QUE CONVERTEM -->
+    <section id="videos" class="editorial-bg py-20 section border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <div class="text-[#9C82E3] text-sm tracking-[3px] font-semibold mb-2">GANCHOS QUE MAIS CONVERTEM</div>
+                <h2 class="heading-serif text-5xl tracking-tighter">Os vídeos que estão<br>gerando mais cliques</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Video 1 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-fomo.mp4', 'assets/images/16.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-fomo.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">O Medo de Ficar pra Trás • 12s</div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-eficiencia.mp4', 'assets/images/14.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-eficiencia.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">Eficiência da IA • 10s</div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-maquina.mp4', 'assets/images/3.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-maquina.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">A Máquina de Vendas • 11s</div>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-erro.mp4', 'assets/images/7.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-erro.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">O Erro da Maioria • 9s</div>
+                    </div>
+                </div>
+
+                <!-- Video 5 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-lucro.mp4', 'assets/images/8.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-lucro.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">O Lucro Escondido • 10s</div>
+                    </div>
+                </div>
+
+                <!-- Video 6 -->
+                <div class="video-card relative group rounded-2xl overflow-hidden border border-white/10 bg-black aspect-video cursor-pointer"
+                    onclick="openVideoModal('assets/videos/hook-concorrencia.mp4', 'assets/images/9.jpg')">
+                    <video class="w-full h-full object-cover" muted loop>
+                        <source src="assets/videos/hook-concorrencia.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-white/70 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-px" fill="white"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <div class="text-xs text-white/70">Ameaça da Concorrência • 11s</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMO FUNCIONA (Lighter) -->
+    <section class="max-w-6xl mx-auto px-6 py-20 section">
+        <div class="text-center mb-12">
+            <div class="text-[#9C82E3] text-sm tracking-[2.5px] font-semibold mb-2">CONSISTENTE. ESCALÁVEL.
+                PROFISSIONAL.</div>
+            <h2 class="heading-serif text-5xl tracking-tighter">Como funciona</h2>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-6">
+            <div class="group rounded-3xl bg-[#111] border border-white/10 p-8">
+                <div class="text-6xl font-semibold tracking-tighter text-white/10 mb-6">01</div>
+                <div class="font-semibold text-xl tracking-tight mb-3">Defina seu pacote mensal</div>
+                <p class="text-white/60 text-[15px]">Você define o volume de fotos e vídeos por mês. Nós entregamos
+                    conteúdo pronto para postar.</p>
+            </div>
+            <div class="group rounded-3xl bg-[#111] border border-white/10 p-8">
+                <div class="text-6xl font-semibold tracking-tighter text-white/10 mb-6">02</div>
+                <div class="font-semibold text-xl tracking-tight mb-3">Receba conteúdo toda semana</div>
+                <p class="text-white/60 text-[15px]">Você aprova o briefing mensal e recebe o conteúdo em batches
+                    semanais.</p>
+            </div>
+            <div class="group rounded-3xl bg-[#111] border border-white/10 p-8">
+                <div class="text-6xl font-semibold tracking-tighter text-white/10 mb-6">03</div>
+                <div class="font-semibold text-xl tracking-tight mb-3">Receba conteúdo toda semana</div>
+                <p class="text-white/60 text-[15px]">Você recebe batches semanais de fotos, stories e vídeos prontos
+                    para postar.</p>
+            </div>
+            <div class="group rounded-3xl bg-[#111] border border-white/10 p-8">
+                <div class="text-6xl font-semibold tracking-tighter text-white/10 mb-6">04</div>
+                <div class="font-semibold text-xl tracking-tight mb-3">Venda mais</div>
+                <p class="text-white/60 text-[15px]">Mantenha seu feed ativo e profissional o mês inteiro.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA EDITORIAL -->
+    <section id="galeria" class="max-w-7xl mx-auto px-6 pb-24 section">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+            <div>
+                <div id="precos" class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <div class="text-[#9C82E3] text-sm tracking-[3px] font-semibold mb-2">INVESTIMENTO</div>
+                        <h2 class="heading-serif text-5xl tracking-tighter">Escolha o pacote ideal</h2>
+                        <p class="text-white/60 mt-4 max-w-md mx-auto">Escolha o plano mensal ideal para manter seu feed
+                            sempre ativo e profissional.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <!-- START -->
+                        <div class="luxury-card rounded-3xl p-8 flex flex-col">
+                            <div>
+                                <div class="font-semibold text-xl">START</div>
+                                <div class="text-sm text-white/50 mt-0.5">Teste único • Sem recorrência</div>
+                            </div>
+                            <div class="mt-8">
+                                <span class="text-5xl font-semibold tracking-tighter">R$ 397</span>
+                            </div>
+
+                            <ul class="mt-8 space-y-3 text-sm flex-1 text-white/80">
+                                <li>5 fotos profissionais</li>
+                                <li>5 stories prontos</li>
+                                <li>1 modelo IA</li>
+                                <li>5 sugestões de legenda</li>
+                                <li>Entrega em até 5 dias</li>
+                                <li>1 rodada de ajustes</li>
+                            </ul>
+
+                            <a href="https://pay.cakto.com.br/528xir2_908920" target="_blank" rel="noopener"
+                                class="mt-8 w-full py-3.5 text-sm font-semibold border border-white/30 hover:bg-white/5 rounded-full transition text-center inline-block">
+                                Começar com START
+                            </a>
+                        </div>
+
+                        <!-- VITRINE -->
+                        <div class="luxury-card rounded-3xl p-8 flex flex-col">
+                            <div>
+                                <div class="font-semibold text-xl">VITRINE</div>
+                                <div class="text-sm text-white/50 mt-0.5">Para lançamentos pontuais</div>
+                            </div>
+                            <div class="mt-8">
+                                <span class="text-5xl font-semibold tracking-tighter">R$ 797</span>
+                            </div>
+
+                            <ul class="mt-8 space-y-3 text-sm flex-1 text-white/80">
+                                <li>10 fotos profissionais</li>
+                                <li>10 stories prontos</li>
+                                <li>2-3 modelos diferentes</li>
+                                <li>Imagens otimizadas para anúncios</li>
+                                <li>10 sugestões de legenda</li>
+                                <li>Até 2 rodadas de ajustes</li>
+                            </ul>
+
+                            <a href="https://pay.cakto.com.br/37mj2kt_908949" target="_blank" rel="noopener"
+                                class="mt-8 w-full py-3.5 text-sm font-semibold border border-white/30 hover:bg-white/5 rounded-full transition text-center inline-block">
+                                Escolher VITRINE
+                            </a>
+                        </div>
+
+                        <!-- ESSENCIAL -->
+                        <div class="luxury-card rounded-3xl p-8 flex flex-col relative border-2 border-[#9C82E3]">
+                            <div
+                                class="absolute -top-3 right-8 bg-[#9C82E3] text-white text-[10px] font-bold tracking-[1.5px] px-4 py-1 rounded-full">
+                                MAIS ESCOLHIDO</div>
+
+                            <div>
+                                <div class="font-semibold text-xl">ESSENCIAL</div>
+                                <div class="text-sm text-white/50 mt-0.5">Mensal • Recomendado</div>
+                            </div>
+                            <div class="mt-8 flex items-baseline gap-x-1">
+                                <span class="text-5xl font-semibold tracking-tighter">R$ 1.299</span>
+                                <span class="text-white/60">/mês</span>
+                            </div>
+                            <div class="text-emerald-400 text-sm font-medium mt-0.5">Menos de R$ 65 por conteúdo</div>
+
+                            <ul class="mt-7 space-y-3 text-sm flex-1 text-white/80">
+                                <li><strong>20 conteúdos por mês</strong></li>
+                                <li>20 fotos + 20 stories</li>
+                                <li>1-2 modelos fixos (branding)</li>
+                                <li>Legendas estratégicas inclusas</li>
+                                <li>Entrega semanal</li>
+                                <li>Revisões ilimitadas (24h)</li>
+                            </ul>
+
+                            <a href="https://pay.cakto.com.br/p2a7am4_908959" target="_blank" rel="noopener"
+                                class="mt-auto w-full py-3.5 text-sm font-semibold accent-bg hover:bg-[#7C5ED1] rounded-full transition text-center inline-block">
+                                Assinar ESSENCIAL
+                            </a>
+                        </div>
+
+                        <!-- PREMIUM -->
+                        <div class="luxury-card rounded-3xl p-8 flex flex-col">
+                            <div>
+                                <div class="font-semibold text-xl">PREMIUM</div>
+                                <div class="text-sm text-white/50 mt-0.5">Mensal • Crescimento acelerado</div>
+                            </div>
+                            <div class="mt-8 flex items-baseline gap-x-1">
+                                <span class="text-5xl font-semibold tracking-tighter">R$ 1.997</span>
+                                <span class="text-white/60">/mês</span>
+                            </div>
+
+                            <ul class="mt-8 space-y-3 text-sm flex-1 text-white/80">
+                                <li><strong>30 conteúdos por mês</strong></li>
+                                <li>30 fotos + 30 stories</li>
+                                <li>2-3 modelos + variedade</li>
+                                <li>8-10 imagens para Meta Ads</li>
+                                <li>2-3 reels curtos por mês</li>
+                                <li>Revisões ilimitadas + call mensal</li>
+                            </ul>
+
+                            <a href="https://pay.cakto.com.br/mjkpkre_908962" target="_blank" rel="noopener"
+                                class="mt-8 w-full py-3.5 text-sm font-semibold border border-white/30 hover:bg-white/5 rounded-full transition text-center inline-block">
+                                Assinar PREMIUM
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="text-center text-white/50 text-sm mt-10">
+                        Todos os pacotes incluem transparência total sobre uso de IA.
+                        <span class="text-white/70">Quer um pacote personalizado?</span> <a href="#"
+                            onclick="openSampleModal()" class="text-white underline hover:no-underline">Fale comigo</a>.
+                    </div>
+                </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="duvidas" class="max-w-3xl mx-auto px-6 pb-20 section">
+        <div class="text-center mb-10">
+            <div class="text-[#9C82E3] text-sm font-semibold tracking-[2px]">DÚVIDAS COMUNS</div>
+            <h2 class="heading-serif text-4xl tracking-tighter mt-1">Perguntas frequentes</h2>
+        </div>
+
+        <div class="space-y-3">
+            <div class="faq-item border border-white/10 rounded-2xl bg-[#111] overflow-hidden">
+                <button onclick="toggleFaq(this)"
+                    class="faq-question w-full flex justify-between items-center px-8 py-5 text-left font-medium">
+                    <span>Mas não é foto real?</span>
+                    <span
+                        class="faq-icon text-[#9C82E3] text-2xl leading-none transition-transform duration-200">+</span>
+                </button>
+                <div class="faq-answer hidden px-8 pb-7 text-white/70 text-[15px]">
+                    Sim, é gerado por IA. É exatamente por isso que é rápido e barato. O resultado é tão realista que a
+                    grande maioria do público aprova e nem percebe a diferença. O importante é a peça ficar bonita e
+                    profissional.
+                </div>
+            </div>
+
+            <div class="faq-item border border-white/10 rounded-2xl bg-[#111] overflow-hidden">
+                <button onclick="toggleFaq(this)"
+                    class="faq-question w-full flex justify-between items-center px-8 py-5 text-left font-medium">
+                    <span>Acho caro. Por que não fazer eu mesma com Midjourney?</span>
+                    <span
+                        class="faq-icon text-[#9C82E3] text-2xl leading-none transition-transform duration-200">+</span>
+                </button>
+                <div class="faq-answer hidden px-8 pb-7 text-white/70 text-[15px]">
+                    Você pode. Mas o resultado de qualidade comercial exige muito prompt engineering, tempo e
+                    consistência de modelo. A maioria das lojas que tentam sozinhas acabam desistindo ou postando
+                    conteúdo com qualidade inconsistente. Nós entregamos resultado pronto e com padrão profissional.
+                </div>
+            </div>
+
+            <div class="faq-item border border-white/10 rounded-2xl bg-[#111] overflow-hidden">
+                <button onclick="toggleFaq(this)"
+                    class="faq-question w-full flex justify-between items-center px-8 py-5 text-left font-medium">
+                    <span>E se meu cliente reclamar que é IA?</span>
+                    <span
+                        class="faq-icon text-[#9C82E3] text-2xl leading-none transition-transform duration-200">+</span>
+                </button>
+                <div class="faq-answer hidden px-8 pb-7 text-white/70 text-[15px]">
+                    No contrato fica explícito que o conteúdo é gerado por IA. A grande maioria das lojas pequenas e
+                    médias não tem problema algum — o que importa para o cliente final é a roupa ficar bonita na foto.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="border-t border-white/10 bg-black py-16">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <h2 class="heading-serif text-[42px] leading-none tracking-tighter">Sua loja merece parecer profissional.
+            </h2>
+            <p class="mt-4 text-xl text-white/70">Comece hoje com uma amostra grátis.</p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-9">
+                <button onclick="openSampleModal()"
+                    class="h-14 px-10 text-lg font-semibold accent-bg hover:bg-[#7C5ED1] rounded-full transition-all flex items-center justify-center gap-x-2 w-full sm:w-auto">
+                    Quero fazer uma amostra grátis
+                </button>
+                <a href="https://wa.me/5515992707314?text=Ol%C3%A1!%20Quero%20conversar%20sobre%20o%20Provador%20IA%20para%20minha%20loja."
+                    target="_blank"
+                    class="h-14 px-8 text-lg font-medium border border-white/25 hover:bg-white/5 rounded-full flex items-center justify-center gap-x-2 transition w-full sm:w-auto">
+                    Falar no WhatsApp
+                </a>
+            </div>
+            <p class="mt-6 text-xs text-white/40">Resposta em até 2 horas • Sem compromisso</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-[#030303] text-xs text-white/50">
+        <div
+            class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-y-4 items-center text-center md:text-left">
+            <div>© 2026 Provador IA — Todos os direitos reservados.</div>
+            <div class="flex gap-x-5">
+                <a href="https://www.instagram.com/socio.desenvolvedor/" target="_blank"
+                    class="hover:text-white/70">Instagram</a>
+                <a href="https://www.youtube.com/channel/UC49oKnySEzNRsbNPOmx_Zbg" target="_blank"
+                    class="hover:text-white/70">YouTube</a>
+                <button onclick="openLegalModal('privacidade')" class="hover:text-white/70">Política de
+                    Privacidade</button>
+                <button onclick="openLegalModal('termos')" class="hover:text-white/70">Termos de Uso</button>
+            </div>
+            <div>
+                Feito para lojas que querem crescer de verdade.
+                <span class="mx-1 hidden md:inline">•</span>
+                <a href="https://raphael-morales.papelh6b.workers.dev/" target="_blank"
+                    class="hover:text-white/70">Raphael Morales</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div id="video-modal" onclick="closeVideoModal(event)"
+        class="hidden fixed inset-0 bg-black/90 backdrop-blur z-[110] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="relative w-full max-w-4xl">
+            <button onclick="closeVideoModal()"
+                class="absolute -top-12 right-1 text-white/60 hover:text-white text-3xl">×</button>
+            <video id="modal-video" controls class="w-full rounded-2xl border border-white/10 bg-black" autoplay>
+                Seu navegador não suporta vídeo.
+            </video>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox(event)"
+        class="hidden fixed inset-0 bg-black/95 z-[110] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="max-w-5xl w-full">
+            <button onclick="closeLightbox()"
+                class="absolute top-6 right-6 text-white/50 hover:text-white text-4xl leading-none">×</button>
+            <img id="lightbox-img" class="w-full max-h-[82vh] object-contain rounded-xl" alt="">
+            <div id="lightbox-caption" class="text-center text-white/60 text-sm mt-4 tracking-widest"></div>
+        </div>
+    </div>
+
+    <!-- SAMPLE MODAL -->
+    <div id="sample-modal" onclick="closeSampleModal(event)"
+        class="hidden fixed inset-0 bg-black/90 backdrop-blur z-[120] flex items-center justify-center p-5">
+        <div onclick="event.stopImmediatePropagation()"
+            class="modal bg-[#111] w-full max-w-md rounded-3xl border border-white/10 overflow-hidden">
+            <div class="px-8 pt-8 pb-7">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="text-[#9C82E3] text-xs tracking-[2.5px] font-semibold">AMOSTRA GRÁTIS</div>
+                        <div class="text-2xl font-semibold tracking-tight mt-1">Vamos testar na sua peça?</div>
+                    </div>
+                    <button onclick="closeSampleModal()"
+                        class="text-white/50 hover:text-white text-3xl leading-none -mt-2">×</button>
+                </div>
+
+                <p class="mt-4 text-white/70 text-[15px]">Envie uma foto da sua roupa e receba 1 foto + 1 story
+                    profissional com modelo IA em até 48h.</p>
+
+                <form id="sample-form" onsubmit="submitSampleForm(event)" class="mt-6 space-y-4">
+                    <div>
+                        <label class="block text-xs tracking-wider text-white/50 mb-1.5">SEU NOME</label>
+                        <input type="text" id="nome" required
+                            class="w-full bg-black border border-white/10 focus:border-[#9C82E3] transition rounded-xl px-5 py-3 text-sm placeholder:text-white/30"
+                            placeholder="Seu nome">
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-wider text-white/50 mb-1.5">WHATSAPP / INSTAGRAM</label>
+                        <input type="text" id="contato" required
+                            class="w-full bg-black border border-white/10 focus:border-[#9C82E3] transition rounded-xl px-5 py-3 text-sm placeholder:text-white/30"
+                            placeholder="(11) 99999-9999 ou @sualoja">
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-wider text-white/50 mb-1.5">NOME DA SUA LOJA</label>
+                        <input type="text" id="loja" required
+                            class="w-full bg-black border border-white/10 focus:border-[#9C82E3] transition rounded-xl px-5 py-3 text-sm placeholder:text-white/30"
+                            placeholder="Nome da loja">
+                    </div>
+                    <div>
+                        <label class="block text-xs tracking-wider text-white/50 mb-1.5">QUAL PEÇA VOCÊ QUER
+                            TESTAR?</label>
+                        <textarea id="peca" rows="2" required
+                            class="w-full resize-y bg-black border border-white/10 focus:border-[#9C82E3] transition rounded-2xl px-5 py-3 text-sm placeholder:text-white/30"
+                            placeholder="Ex: Vestido midi bege de linho"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-3.5 rounded-full accent-bg font-semibold text-sm mt-2 hover:bg-[#7C5ED1] transition">
+                        ENVIAR SOLICITAÇÃO DE AMOSTRA
+                    </button>
+                </form>
+
+                <p class="text-[10px] text-center text-white/40 mt-4">Você será redirecionado para o WhatsApp com os
+                    dados preenchidos automaticamente.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEGAL MODAL (Política de Privacidade / Termos de Uso) -->
+    <div id="legal-modal" onclick="closeLegalModal(event)"
+        class="hidden fixed inset-0 bg-black/90 backdrop-blur z-[130] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()"
+            class="modal bg-[#111] w-full max-w-3xl rounded-3xl border border-white/10 overflow-hidden max-h-[90vh] flex flex-col">
+
+            <!-- Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                <div class="flex gap-2">
+                    <button onclick="switchLegalTab('privacidade')"
+                        class="legal-tab px-4 py-1.5 text-sm font-medium rounded-full bg-white/5 hover:bg-white/10 transition"
+                        id="tab-privacidade">
+                        Política de Privacidade
+                    </button>
+                    <button onclick="switchLegalTab('termos')"
+                        class="legal-tab px-4 py-1.5 text-sm font-medium rounded-full hover:bg-white/10 transition"
+                        id="tab-termos">
+                        Termos de Uso
+                    </button>
+                </div>
+                <button onclick="closeLegalModal()"
+                    class="text-white/50 hover:text-white text-3xl leading-none">×</button>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 overflow-y-auto text-sm text-white/80 leading-relaxed flex-1" style="max-height: 70vh;">
+
+                <!-- Política de Privacidade -->
+                <div id="content-privacidade">
+                    <h3 class="text-white text-lg font-semibold mb-3">Política de Privacidade</h3>
+                    <p class="mb-3">A Provador IA valoriza a sua privacidade. Esta Política de Privacidade explica como
+                        coletamos, usamos e protegemos suas informações quando você utiliza nosso site e serviços.</p>
+
+                    <p class="mb-2 font-medium text-white">1. Informações que coletamos</p>
+                    <p class="mb-3">Coletamos informações que você nos fornece diretamente, como nome, WhatsApp, nome da
+                        loja e fotos de peças enviadas para amostras. Também coletamos dados de navegação através de
+                        cookies para melhorar sua experiência.</p>
+
+                    <p class="mb-2 font-medium text-white">2. Como usamos suas informações</p>
+                    <p class="mb-3">Utilizamos seus dados para gerar conteúdo com IA, enviar amostras, processar
+                        pagamentos e melhorar nossos serviços. Não vendemos seus dados a terceiros.</p>
+
+                    <p class="mb-2 font-medium text-white">3. Compartilhamento de dados</p>
+                    <p class="mb-3">Podemos compartilhar informações com prestadores de serviço (hospedagem,
+                        processadores de pagamento) quando necessário para operar o serviço. Todo compartilhamento é
+                        feito sob obrigações de confidencialidade.</p>
+
+                    <p class="mb-2 font-medium text-white">4. Seus direitos</p>
+                    <p>Você pode solicitar a exclusão dos seus dados a qualquer momento entrando em contato conosco pelo
+                        WhatsApp. Respeitamos a LGPD e o seu direito à privacidade.</p>
+                </div>
+
+                <!-- Termos de Uso -->
+                <div id="content-termos" class="hidden">
+                    <h3 class="text-white text-lg font-semibold mb-3">Termos de Uso</h3>
+                    <p class="mb-3">Ao utilizar o site e os serviços da Provador IA, você concorda com estes Termos de
+                        Uso.</p>
+
+                    <p class="mb-2 font-medium text-white">1. Natureza do Serviço</p>
+                    <p class="mb-3">Nossos conteúdos (fotos e vídeos) são gerados por inteligência artificial. Embora
+                        busquemos o maior realismo possível, o material é sintético e deve ser utilizado com essa
+                        ciência.</p>
+
+                    <p class="mb-2 font-medium text-white">2. Uso do Conteúdo</p>
+                    <p class="mb-3">Você recebe licença para usar o conteúdo gerado em suas redes sociais, site e
+                        anúncios. É proibido revender, redistribuir ou utilizar o material de forma que viole direitos
+                        de terceiros.</p>
+
+                    <p class="mb-2 font-medium text-white">3. Responsabilidade</p>
+                    <p class="mb-3">A Provador IA não se responsabiliza por eventuais reclamações de clientes finais
+                        sobre o uso de conteúdo gerado por IA. Recomendamos transparência com seu público.</p>
+
+                    <p class="mb-2 font-medium text-white">4. Cancelamento e Reembolso</p>
+                    <p>Assinaturas podem ser canceladas a qualquer momento. Não realizamos reembolso proporcional de
+                        meses já utilizados. Para pacotes avulsos, reembolso só será avaliado em casos de falha grave na
+                        entrega.</p>
+                </div>
+
+            </div>
+
+            <div class="px-6 py-3 bg-[#0a0a0a] text-[10px] text-white/40 border-t border-white/10">
+                Última atualização: Junho de 2026 • Provador IA
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // FAQ
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            const isOpen = !answer.classList.contains('hidden');
+
+            document.querySelectorAll('.faq-answer').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.faq-question .faq-icon').forEach(el => {
+                el.textContent = '+';
+                el.classList.remove('rotate-45');
+            });
+
+            if (!isOpen) {
+                answer.classList.remove('hidden');
+                icon.textContent = '−';
+            }
+        }
+
+        // Before/After Slider
+        function initBeforeAfter() {
+            const container = document.getElementById('ba-container');
+            const afterImg = document.getElementById('after-img');
+            const handle = document.getElementById('slider-handle');
+
+            if (!container || !afterImg || !handle) return;
+
+            let isDragging = false;
+
+            function updateSlider(clientX) {
+                const rect = container.getBoundingClientRect();
+                let percent = ((clientX - rect.left) / rect.width) * 100;
+                percent = Math.max(5, Math.min(95, percent));
+
+                afterImg.style.clipPath = `inset(0 0 0 ${percent}%)`;
+                handle.style.left = `${percent}%`;
+            }
+
+            // Mouse
+            handle.addEventListener('mousedown', () => { isDragging = true; });
+            window.addEventListener('mouseup', () => { isDragging = false; });
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) updateSlider(e.clientX);
+            });
+
+            // Touch
+            handle.addEventListener('touchstart', () => { isDragging = true; });
+            window.addEventListener('touchend', () => { isDragging = false; });
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging) updateSlider(e.touches[0].clientX);
+            });
+
+            // Click anywhere on container
+            container.addEventListener('click', (e) => {
+                updateSlider(e.clientX);
+            });
+
+            // Initial position
+            setTimeout(() => {
+                afterImg.style.clipPath = 'inset(0 0 0 52%)';
+                handle.style.left = '52%';
+            }, 80);
+        }
+
+        // Video Modal
+        let currentVideoModal = null;
+
+        function openVideoModal(src, poster) {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+
+            video.src = src;
+            video.poster = poster || '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            currentVideoModal = video;
+            video.play().catch(() => { });
+        }
+
+        function closeVideoModal(event) {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+
+            if (event && event.target === modal) {
+                video.pause();
+                video.src = '';
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            } else if (!event) {
+                video.pause();
+                video.src = '';
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Lightbox
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+
+            img.src = src;
+            cap.textContent = caption || '';
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        }
+
+        function closeLightbox(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (!event || event.target === lightbox) {
+                lightbox.classList.remove('flex');
+                lightbox.classList.add('hidden');
+            }
+        }
+
+        // Sample Modal
+        function openSampleModal() {
+            const modal = document.getElementById('sample-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSampleModal(event) {
+            const modal = document.getElementById('sample-modal');
+            if (!event || event.target === modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Legal Modal (Política de Privacidade / Termos de Uso)
+        function openLegalModal(tab = 'privacidade') {
+            const modal = document.getElementById('legal-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            switchLegalTab(tab);
+        }
+
+        function closeLegalModal(event) {
+            const modal = document.getElementById('legal-modal');
+            if (!event || event.target === modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        function switchLegalTab(tab) {
+            const privacidadeContent = document.getElementById('content-privacidade');
+            const termosContent = document.getElementById('content-termos');
+            const tabPriv = document.getElementById('tab-privacidade');
+            const tabTermos = document.getElementById('tab-termos');
+
+            if (tab === 'privacidade') {
+                privacidadeContent.classList.remove('hidden');
+                termosContent.classList.add('hidden');
+                tabPriv.classList.add('bg-white/5');
+                tabTermos.classList.remove('bg-white/5');
+            } else {
+                privacidadeContent.classList.add('hidden');
+                termosContent.classList.remove('hidden');
+                tabPriv.classList.remove('bg-white/5');
+                tabTermos.classList.add('bg-white/5');
+            }
+        }
+
+        // WhatsApp Form
+        function submitSampleForm(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const contato = document.getElementById('contato').value.trim();
+            const loja = document.getElementById('loja').value.trim();
+            const peca = document.getElementById('peca').value.trim();
+
+            const message = `Olá! Quero fazer uma amostra grátis do Provador IA.%0A%0A` +
+                `*Nome:* ${nome}%0A` +
+                `*Contato:* ${contato}%0A` +
+                `*Loja:* ${loja}%0A` +
+                `*Peça para testar:* ${peca}`;
+
+            const phone = "5515992707314"; // ⚠️ ALTERE PARA O NÚMERO REAL
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            closeSampleModal();
+            document.getElementById('sample-form').reset();
+        }
+
+        // Package selection
+        function selectPackage(pacote, valor) {
+            const modal = document.getElementById('sample-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            setTimeout(() => {
+                const pecaField = document.getElementById('peca');
+                pecaField.value = `Tenho interesse no pacote ${pacote} (R$ ${valor})`;
+                pecaField.focus();
+            }, 320);
+        }
+
+        // Keyboard
+        function initKeyboard() {
+            document.addEventListener('keydown', function (e) {
+                if (e.key === "Escape") {
+                    const videoModal = document.getElementById('video-modal');
+                    const lightbox = document.getElementById('lightbox');
+                    const sampleModal = document.getElementById('sample-modal');
+
+                    if (!videoModal.classList.contains('hidden')) {
+                        const video = document.getElementById('modal-video');
+                        video.pause();
+                        video.src = '';
+                        videoModal.classList.remove('flex');
+                        videoModal.classList.add('hidden');
+                    } else if (!lightbox.classList.contains('hidden')) {
+                        lightbox.classList.remove('flex');
+                        lightbox.classList.add('hidden');
+                    } else if (!sampleModal.classList.contains('hidden')) {
+                        sampleModal.classList.remove('flex');
+                        sampleModal.classList.add('hidden');
+                    } else {
+                        const legalModal = document.getElementById('legal-modal');
+                        if (!legalModal.classList.contains('hidden')) {
+                            legalModal.classList.remove('flex');
+                            legalModal.classList.add('hidden');
+                        }
+                    }
+                }
+            });
+        }
+
+        // Smooth scroll
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = 80;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - navHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        function initHeroSoundToggle() {
+            const video = document.getElementById('hero-video');
+            const toggleBtn = document.getElementById('sound-toggle');
+            const icon = document.getElementById('sound-icon');
+
+            if (!video || !toggleBtn || !icon) return;
+
+            let isMuted = true; // starts muted
+
+            const mutedIcon = `
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/>
+            `;
+
+            const soundOnIcon = `
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/>
+            `;
+
+            // Set initial icon
+            icon.innerHTML = mutedIcon;
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                isMuted = !isMuted;
+                video.muted = isMuted;
+
+                if (isMuted) {
+                    icon.innerHTML = mutedIcon;
+                    toggleBtn.setAttribute('aria-label', 'Ativar som do vídeo');
+                    toggleBtn.classList.remove('!bg-[#9C82E3]/70');
+                } else {
+                    icon.innerHTML = soundOnIcon;
+                    toggleBtn.setAttribute('aria-label', 'Desativar som do vídeo');
+                    toggleBtn.classList.add('!bg-[#9C82E3]/70');
+                }
+            });
+        }
+
+        // Init everything
+        function init() {
+            initNavbar();
+            initBeforeAfter();
+            initKeyboard();
+            initSmoothScroll();
+            initHeroSoundToggle();
+
+            // Close mobile menu on link click
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+
+            // Optional: pause other videos when one starts (performance)
+            document.querySelectorAll('video').forEach(v => {
+                v.addEventListener('play', function () {
+                    document.querySelectorAll('video').forEach(other => {
+                        if (other !== this) other.pause();
+                    });
+                });
+            });
+        }
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>

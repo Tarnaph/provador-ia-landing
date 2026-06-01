@@ -1,0 +1,35 @@
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+
+# Environment variables
+.env
+.env.local
+
+# Misc
+*.tgz
+*.zip
+
+# Temporary / junk folders
+Nova pasta/
+Nova pasta - Copia/
+
+# GSD planning files (optional - remove this line if you want to keep .planning in git)
+.planning/
