@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Provador IA — Pacotes mensais de conteúdo com IA para sua loja</title>
     <meta name="description"
         content="Pacotes mensais de fotos e vídeos profissionais com IA para sua loja. Conteúdo consistente todo mês sem precisar de modelo ou fotógrafo.">
@@ -74,9 +74,13 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[#050505]">
-            <div class="px-6 py-8 flex flex-col gap-y-6 text-base font-medium">
+        <!-- Mobile Menu (Phase 3 Wave 0 - per 03-UI-SPEC.md Mobile Menu Behavior rule)
+             Must NOT extend the fixed navbar's coverage area over the hero video.
+             Positioned below the bar so hero top remains visible. -->
+        <div id="mobile-menu"
+             class="hidden md:hidden fixed left-0 right-0 border-t border-white/10 bg-[#050505] z-[49]"
+             style="top: var(--nav-height, 5rem);">
+            <div class="px-6 py-8 flex flex-col gap-y-6 text-base font-medium max-h-[70vh] overflow-auto">
                 <a href="#transformacao" class="py-1 text-white/80" onclick="toggleMobileMenu()">A Transformação</a>
                 <a href="#videos" class="py-1 text-white/80" onclick="toggleMobileMenu()">Em Movimento</a>
                 <a href="#precos" class="py-1 text-white/80" onclick="toggleMobileMenu()">Preços</a>
@@ -97,7 +101,7 @@
         </div>
     </nav>
 
-    <section class="min-h-[70dvh] flex items-center bg-[#050505]">
+    <section class="min-h-[70dvh] flex items-center bg-[#050505] pt-20">
         <div class="max-w-7xl mx-auto w-full">
             <div class="grid md:grid-cols-2 gap-12 items-center">
 
@@ -791,9 +795,18 @@
             });
         }
 
-        // Mobile menu
+        // Mobile menu (Phase 3 Wave 0)
+        // Per 03-UI-SPEC.md: menu must NOT extend the fixed navbar coverage over the hero.
+        // We use fixed positioning + body class guard.
         function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+            const menu = document.getElementById('mobile-menu');
+            const isHidden = menu.classList.toggle('hidden');
+
+            if (!isHidden) {
+                document.body.classList.add('mobile-menu-open');
+            } else {
+                document.body.classList.remove('mobile-menu-open');
+            }
         }
 
         // FAQ
@@ -1098,10 +1111,12 @@
             initSmoothScroll();
             initHeroSoundToggle();
 
-            // Close mobile menu on link click
+            // Close mobile menu on link click (Phase 3 Wave 0)
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
-                    document.getElementById('mobile-menu').classList.add('hidden');
+                    const menu = document.getElementById('mobile-menu');
+                    menu.classList.add('hidden');
+                    document.body.classList.remove('mobile-menu-open');
                 });
             });
 

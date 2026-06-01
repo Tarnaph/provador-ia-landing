@@ -19,6 +19,31 @@
   scroll-margin-top: 80px;
 }
 
+/* =========================================================
+   Fixed Nav + Hero Safe Area Contract (Wave 0 - Phase 3)
+   Per 03-UI-SPEC.md → "Mobile Hero & Fixed Navigation Contract"
+   ========================================================= */
+:root {
+  /* Base nav height must match .h-20 exactly. Safe-area is added on top. */
+  --nav-height: 5rem;
+}
+
+/* Hero (and first major visual section) must always sit below the fixed nav */
+.hero,
+section:first-of-type:not(nav *) {
+  /* Primary safe offset */
+  padding-top: var(--nav-height);
+  /* iOS notch / Dynamic Island + collapsing mobile browser chrome */
+  padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+}
+
+/* When mobile menu is open, we still protect the hero from being covered */
+body.mobile-menu-open .hero,
+body.mobile-menu-open section:first-of-type:not(nav *) {
+  /* Extra guard if menu temporarily increases visual coverage */
+  padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+}
+
 /* Navbar scrolled state (glassmorphism) */
 .nav-scrolled {
   background-color: rgba(5, 5, 5, 0.96);
