@@ -9,12 +9,23 @@
         content="Pacotes mensais de fotos e vídeos profissionais com IA para sua loja. Conteúdo consistente todo mês sem precisar de modelo ou fotógrafo.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo.png">
-    <!-- Recomendado: gere favicons profissionais em https://realfavicongenerator.net usando o logo.png -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
 
-    <!-- Tailwind v4 via Vite (no more CDN) -->
-    <link rel="stylesheet" href="/src/main.css">
+    <!-- Tailwind via CDN (for fully static deployment) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif-custom': ['Playfair Display', 'Georgia', 'serif']
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
